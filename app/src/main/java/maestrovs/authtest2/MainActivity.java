@@ -61,8 +61,9 @@ public class MainActivity extends AppCompatActivity  {
                 };
 
 
-         credentialStore =  new SharedPreferencesCredentialStore(MainActivity.this,
-                        "preferenceFileName", new JacksonFactory());
+         credentialStore =  new SharedPreferencesCredentialStore(MainActivity.this, //???????????????????????????
+                        "preferenceFileName",
+                 new JacksonFactory());
 
 
 
