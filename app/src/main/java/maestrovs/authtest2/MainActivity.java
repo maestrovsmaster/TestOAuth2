@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity  {
                 };
 
 
-         credentialStore =  new SharedPreferencesCredentialStore(MainActivity.this, //???????????????????????????
+         credentialStore =  new SharedPreferencesCredentialStore(MainActivity.this,
                         "",
                  new JacksonFactory());
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity  {
                 new GenericUrl("https://api.equalibra.org/oauth/token"),
                 new ClientParametersAuthentication("ios-app", "key????"),
                 "ios-app",
-                "https://api.equalibra.org/oauth/authorize?state=facebook&response_type=code");
+                "https://api.equalibra.org/oauth/authorize?state=twitter&response_type=code");
         builder.setCredentialStore(credentialStore);
 
         //builder.setScopes(Arrays.asList("state", "facebook"));
