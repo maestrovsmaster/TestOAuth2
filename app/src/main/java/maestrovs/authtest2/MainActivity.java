@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity  {
                 AndroidHttp.newCompatibleTransport(),
                 new JacksonFactory(),
                 new GenericUrl("https://api.equalibra.org/oauth/token"),
-                new ClientParametersAuthentication("ios-app", "Wduj4atYYBhAhHKMwk6Swgn9Wp987nhA"),
+                new ClientParametersAuthentication("ios-app", "key????"),
                 "ios-app",
                 "https://api.equalibra.org/oauth/authorize?state=facebook&response_type=code");
         builder.setCredentialStore(credentialStore);
