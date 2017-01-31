@@ -1,5 +1,6 @@
 package maestrovs.authtest2;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
          credentialStore =  new SharedPreferencesCredentialStore(MainActivity.this, //???????????????????????????
-                        "preferenceFileName",
+                        "",
                  new JacksonFactory());
 
 
@@ -74,10 +75,10 @@ public class MainActivity extends AppCompatActivity  {
                 new GenericUrl("https://api.equalibra.org/oauth/token"),
                 new ClientParametersAuthentication("ios-app", "Wduj4atYYBhAhHKMwk6Swgn9Wp987nhA"),
                 "ios-app",
-                "https://api.equalibra.org/oauth/authorize");
+                "https://api.equalibra.org/oauth/authorize?state=facebook&response_type=code");
         builder.setCredentialStore(credentialStore);
 
-        builder.setScopes(Arrays.asList("state", "facebook"));
+        //builder.setScopes(Arrays.asList("state", "facebook"));
 
 
         flow = builder.build();
@@ -91,17 +92,22 @@ public class MainActivity extends AppCompatActivity  {
     OAuthManager oauth;
     Credential credential;
 
+    Handler handler = new Handler();
+
 
     class OathManagerThread extends Thread
     {
         @Override
         public void run() {
             oauth = new OAuthManager(flow, controller);
-            try {
-                 credential = oauth.authorizeImplicitly("ios-app", null, null).getResult();
+            try
+            {
+                 //credential = oauth.authorizeImplicitly("ios-app", null, null).getResult();
+
+                credential = oauth.authorizeExplicitly("ios-app", null, null).getResult();
 
 
-               /* OAuthManager.OAuthCallback<Credential> callback = new OAuthManager.OAuthCallback<Credential>() {
+             /*   OAuthManager.OAuthCallback<Credential> callback = new OAuthManager.OAuthCallback<Credential>() {
                     @Override public void run(OAuthManager.OAuthFuture<Credential> future) {
                         try {
                             Credential credential = future.getResult();
@@ -110,8 +116,11 @@ public class MainActivity extends AppCompatActivity  {
                         }
                         // make API queries with credential.getAccessToken()
                     }
-                };
-                oauth.authorizeImplicitly("userId", callback, handler);*/
+                };*/
+               // credential = (Credential) oauth.authorizeImplicitly("userId", callback, handler);
+
+              // // credential = (Credential)
+              //  oauth.authorizeExplicitly("ios-app", callback,handler);
 
 
             } catch (IOException e) {
